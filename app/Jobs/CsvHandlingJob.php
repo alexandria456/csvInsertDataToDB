@@ -2,9 +2,8 @@
 
 namespace App\Jobs;
 
-use App\CsvImportService\CsvInsert;
+use App\CsvImport\CsvInsertService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -26,12 +25,9 @@ class CsvHandlingJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
-     * @throws FileNotFoundException
      */
-    public function handle(): void
+    public function handle()
     {
-        (new CsvInsert())->insert();
+        (new CsvInsertService())->insert();
     }
 }
